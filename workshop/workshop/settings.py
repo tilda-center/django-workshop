@@ -48,7 +48,7 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-  "TOKEN_OBTAIN_SERIALIZER": "v1.serializers.MyTokenObtainPairSerializer",
+  "TOKEN_OBTAIN_SERIALIZER": "v1.serializers.login.MyTokenObtainPairSerializer",
 }
 
 MIDDLEWARE = [
