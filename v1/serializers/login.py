@@ -9,8 +9,8 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         # Add custom claims
         token['username'] = user.username
         token['roles'] = [g.name for g in user.groups.all()]
-        
-
         return token
+    
+    
     
     
