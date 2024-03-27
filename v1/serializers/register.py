@@ -27,6 +27,4 @@ class RegisterSerializer(serializers.ModelSerializer):
         group, _ = Group.objects.get_or_create(name="student")
         user.groups.add(group)
                     
-        user.save()
-        
-        
+        user.save() 
