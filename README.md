@@ -1,1 +1,0 @@
-# skuga_kurs

@@ -29,3 +29,4 @@ class RegisterSerializer(serializers.ModelSerializer):
                     
         user.save()
         
+        

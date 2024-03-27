@@ -22,3 +22,5 @@ class RegisterViewSet(GenericViewSet, CreateModelMixin):
         serializer = MyTokenObtainPairSerializer(data=data)
         serializer.is_valid()
         return Response(serializer.validated_data)
+    
+    
