@@ -5,5 +5,12 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):
         token = super().get_token(user)
-        token['role'] = 'admin'
+
+        # Add custom claims
+        token['username'] = user.username
+        token['roles'] = [g.name for g in user.groups.all()]
+        
+
         return token
+    
+    
