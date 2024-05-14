@@ -9,7 +9,7 @@ from v1.views.register import RegisterViewSet
 from v1.views.verify_token import VerifyTokenViewSet
 
 router = DefaultRouter()
-router.register('register', RegisterViewSet)
+router.register('register', RegisterViewSet, basename='register')
 router.register('verify', VerifyTokenViewSet)
 
 urlpatterns = router.urls + [

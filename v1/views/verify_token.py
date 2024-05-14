@@ -18,7 +18,7 @@ class VerifyTokenViewSet(
             token=self.kwargs.get("pk"),
         )
 
-    def update(self, request):
+    def update(self, request, pk):
         token = self.get_object()
         token.used = True
         token.save()
