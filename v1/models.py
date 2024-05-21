@@ -26,7 +26,7 @@ class Lecture(models.Model):
         User,
         on_delete=models.DO_NOTHING,
     )
-    students = models.ManyToManyField(User,related_name="Class",)
+    students = models.ManyToManyField(User,related_name="Class")
     events = models.ManyToManyField(Event)
     title = models.TextField(max_length=100)
     info = models.TextField(max_length=500)
