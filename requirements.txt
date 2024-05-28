@@ -1,4 +1,4 @@
 django
 djangorestframework-simplejwt
 django-extensions
-drf_yasg
+drf_spectacular

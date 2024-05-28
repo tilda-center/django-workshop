@@ -11,6 +11,7 @@ from v1.views.verify_token import VerifyTokenViewSet
 from .views import health_check
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
 router = DefaultRouter()
 router.register('register', RegisterViewSet, basename='register')
