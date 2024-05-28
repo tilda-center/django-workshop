@@ -8,11 +8,13 @@ from rest_framework import permissions
 
 from v1.views.register import RegisterViewSet
 from v1.views.verify_token import VerifyTokenViewSet
+from v1.views.lecture import ProfessorLectureViewSet
 from .views import health_check
 
 router = DefaultRouter()
 router.register('register', RegisterViewSet, basename='register')
 router.register('verify', VerifyTokenViewSet)
+router.register('professor/lectures', ProfessorLectureViewSet)
 
 urlpatterns = router.urls + [
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
