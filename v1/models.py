@@ -15,18 +15,18 @@ class VerifyToken(models.Model):
     created_at = models.DateTimeField(auto_now=True)
 
 
-class Event(models.Model):
-    start = models.DateTimeField()
-    end = models.DateTimeField()
-    info = models.TextField(max_length=500)
-
-
 class Lecture(models.Model):
     professor = models.ForeignKey(
         User,
         on_delete=models.DO_NOTHING,
     )
-    students = models.ManyToManyField(User, related_name="Class")
-    events = models.ManyToManyField(Event)
+    students = models.ManyToManyField(User, related_name="classes")
     title = models.TextField(max_length=100)
+    info = models.TextField(max_length=500)
+
+
+class Event(models.Model):
+    lecture = models.ForeignKey(Lecture, null=True, on_delete=models.PROTECT)
+    start = models.DateTimeField()
+    end = models.DateTimeField()
     info = models.TextField(max_length=500)
