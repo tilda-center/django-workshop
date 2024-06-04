@@ -30,4 +30,3 @@ class Lecture(models.Model):
     events = models.ManyToManyField(Event)
     title = models.TextField(max_length=100)
     info = models.TextField(max_length=500)
-

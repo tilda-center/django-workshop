@@ -4,7 +4,6 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 from rest_framework.routers import DefaultRouter
-from rest_framework import permissions
 
 from v1.views.register import RegisterViewSet
 from v1.views.verify_token import VerifyTokenViewSet

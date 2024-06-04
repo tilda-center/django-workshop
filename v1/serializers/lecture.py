@@ -14,4 +14,3 @@ class LectureSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         validated_data["professor"] = self.context["request"].user
         return super.create(validated_data)
-
