@@ -2,3 +2,6 @@ django
 djangorestframework-simplejwt
 django-extensions
 drf_spectacular
+PyJWT
+djangorestframework
+python-dotenv
