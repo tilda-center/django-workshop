@@ -34,13 +34,13 @@ class RegisterSerializer(serializers.ModelSerializer):
         self.send_welcome_email(
             self.validated_data["email"],
             verify_token.token,
-        ) 
+        )
         user.groups.add(group)
         user.save()
 
     def send_welcome_email(self, email, verify_token):
         subject = 'Welcome to My Site'
         message = f'{verify_token}'
-        from_email = 'admin@mysite.com' 
+        from_email = 'admin@mysite.com'
         recipient_list = [email]
         send_mail(subject, message, from_email, recipient_list)

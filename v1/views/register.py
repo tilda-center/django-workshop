@@ -7,6 +7,7 @@ from rest_framework.response import Response
 from v1.serializers.register import RegisterSerializer
 from v1.serializers.login import MyTokenObtainPairSerializer
 
+
 class RegisterViewSet(GenericViewSet, CreateModelMixin):
     serializer_class = RegisterSerializer
     queryset = User.objects.all()
@@ -21,5 +22,3 @@ class RegisterViewSet(GenericViewSet, CreateModelMixin):
         serializer = MyTokenObtainPairSerializer(data=data)
         serializer.is_valid()
         return Response(serializer.validated_data)
-        
-
