@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+from datetime import datetime, timedelta
 from pathlib import Path
 import os
 from dotenv import load_dotenv
@@ -59,7 +59,10 @@ SWAGGER_SETTINGS = {
 
 SIMPLE_JWT = {
     "TOKEN_OBTAIN_SERIALIZER": "v1.serializers.login.MyTokenObtainPairSerializer",
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
 }
+
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -79,6 +82,8 @@ SPECTACULAR_SETTINGS = {
     'SWAGGER_UI_SETTINGS': {
         'persistAuthorization': True,
     },
+    'SCHEMA_PATH_PREFIX': "api/v1",
+
 }
 
 MIDDLEWARE = [

@@ -6,7 +6,7 @@ from rest_framework import serializers
 from v1.models import Lecture, Event
 
 
-class EventSerializer(serializers.Serializer):
+class LectureEventSerializer(serializers.Serializer):
     DATEYPE_INTERVAL_CHOICE = ("day", "week", "month")
     type = serializers.ChoiceField(
         choices=DATEYPE_INTERVAL_CHOICE,
@@ -77,12 +77,12 @@ class EventSerializer(serializers.Serializer):
                 )
 
         intervals = []
-        start_time = datetime.combine(first_date, start_time)
-        end_time = datetime.combine(first_date, end_time)
+        start_time = datetime.datetime.combine(first_date, start_time)
+        end_time = datetime.datetime.combine(first_date, end_time)
         duration = end_time - start_time
 
         if choice == "day":
-            pivot_date = datetime.combine(first_date, start_time.time())
+            pivot_date = datetime.datetime.combine(first_date, start_time.time())
             while pivot_date.date() < last_date:
                 intervals.append(self.initialize_event(
                     **{
@@ -95,7 +95,7 @@ class EventSerializer(serializers.Serializer):
 
         elif choice == "week":
             for weekday in weekdays:
-                pivot_date = datetime.combine(first_date, start_time.time())
+                pivot_date = datetime.datetime.combine(first_date, start_time.time())
 
                 # Calculate days until next day of the week
                 days_ahead = (weekday - pivot_date.weekday() + 7) % 7
@@ -119,7 +119,7 @@ class EventSerializer(serializers.Serializer):
 
         elif choice == "month":
             for date in dates:
-                pivot_date = datetime.combine(date, start_time.time())
+                pivot_date = datetime.datetime.combine(date, start_time.time())
                 while pivot_date.date() <= last_date:
                     intervals.append(
                         self.initialize_event(**{
@@ -140,7 +140,7 @@ class EventSerializer(serializers.Serializer):
 
 
 class LectureSerializer(serializers.ModelSerializer):
-    events = EventSerializer(write_only=True, required=False)
+    events = LectureEventSerializer(write_only=True, required=False)
     time_preset = serializers.ChoiceField(
         choices=(
             ("every_day", "every_day"),
@@ -156,6 +156,7 @@ class LectureSerializer(serializers.ModelSerializer):
     class Meta:
         model = Lecture
         fields = [
+            "id",
             "title",
             "info",
             "professor",
@@ -194,7 +195,7 @@ class LectureSerializer(serializers.ModelSerializer):
         if self.time_preset:
             self.events.update(self.generate_preset_events(self.time_preset))
 
-        events_serializer = EventSerializer(
+        events_serializer = LectureEventSerializer(
             data=self.events, context={"lecture": lecture}
         )
         events_serializer.is_valid()
